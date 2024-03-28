@@ -55,17 +55,19 @@ public class CoffeeMachine {
         System.out.println();
     }
 
-    public static void Buy(int coffeeType) {
+    public static void Buy(String coffeeType) {
         switch (coffeeType) {
-            case 1:
+            case "1":
                 buyEspresso();
                 break;
-            case 2:
+            case "2":
                 buyLatte();
                 break;
-            case 3:
+            case "3":
                 buyCappuccino();
                 break;
+            case "back":
+                return;
             default:
                 break;
         }
@@ -94,9 +96,9 @@ public class CoffeeMachine {
         System.out.println();
     }
 
-    public static int getCoffeeType() {
-        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino");
-        return Integer.parseInt(scanner.nextLine());
+    public static String getCoffeeType() {
+        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
+        return scanner.nextLine();
     }
 
     public static int getWater() {
@@ -119,19 +121,23 @@ public class CoffeeMachine {
         return Integer.parseInt(scanner.nextLine());
     }
 
+    public static String mainMenu() {
+        System.out.println("Write action (buy, fill, take, remaining, exit):");
+        return scanner.nextLine();
+    }
+
 
     public static void main(String[] args) {
 
         while (true) {
 
-            System.out.println("Write action (buy, fill, take, remaining, exit):");
-            String action = scanner.nextLine();
+            String action = mainMenu();
 
             System.out.println();
 
             switch (action) {
                 case "buy":
-                    int coffeeType = getCoffeeType();
+                    String coffeeType = getCoffeeType();
                     Buy(coffeeType);
                     break;
                 case "fill":
@@ -152,6 +158,7 @@ public class CoffeeMachine {
         }
     }
 }
+
 
 
 
